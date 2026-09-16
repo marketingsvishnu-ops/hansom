@@ -3,157 +3,481 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casino Boat Trip</title>
+
+  <title>Ocean Crown Casino Cruise</title>
 
   <style>
+    :root {
+      --gold: #d8b35a;
+      --gold-light: #f3d88c;
+      --black: #070808;
+      --dark: #101313;
+      --dark-2: #171a1a;
+      --gray: #aaa;
+      --white: #fff;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0b0b0b;
-      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
     }
 
-    header {
-      background: #111;
-      padding: 20px 8%;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      background: #030404;
+      border-bottom: 1px solid #292929;
+      padding: 9px 6%;
       display: flex;
       justify-content: space-between;
+      color: #999;
+      font-size: 13px;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 7, 7, 0.96);
+      border-bottom: 1px solid #292929;
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 25px;
+
+      display: flex;
       align-items: center;
-      border-bottom: 1px solid #333;
+      justify-content: space-between;
     }
 
     .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #f5c542;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
     }
 
     nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: 0.3s;
     }
 
     nav a:hover {
-      color: #f5c542;
+      color: var(--gold);
     }
 
+    .menu-btn {
+      display: none;
+      background: transparent;
+      color: white;
+      border: 1px solid #555;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    /* HERO */
     .hero {
-      min-height: 75vh;
+      min-height: 82vh;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       text-align: center;
-      padding: 60px 20px;
+
+      padding: 80px 20px;
+
       background:
-        linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
-        url("casino-boat.jpg") center/cover;
+        linear-gradient(
+          rgba(0,0,0,.35),
+          rgba(0,0,0,.85)
+        ),
+        url("images/casino-boat.jpg")
+        center/cover no-repeat;
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      color: var(--gold-light);
+      letter-spacing: 5px;
+      font-size: 13px;
+      font-weight: bold;
     }
 
     .hero h1 {
-      font-size: 56px;
-      margin-bottom: 20px;
-      color: #f5c542;
+      font-size: clamp(45px, 8vw, 90px);
+      line-height: 0.98;
+      text-transform: uppercase;
+      margin: 20px 0;
+      text-shadow: 0 5px 25px #000;
     }
 
     .hero p {
-      font-size: 20px;
-      line-height: 1.6;
-      margin-bottom: 30px;
+      max-width: 680px;
+      margin: auto;
+      color: #ddd;
+      font-size: 18px;
     }
 
+    /* BUTTONS */
     .btn {
       display: inline-block;
-      padding: 14px 30px;
-      background: #f5c542;
-      color: #111;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
+      margin: 25px 5px 0;
+      padding: 14px 28px;
+
+      background: var(--gold);
+      color: #080808;
+
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      border-radius: 2px;
+      transition: 0.3s;
     }
 
     .btn:hover {
-      background: #fff;
+      background: white;
+      transform: translateY(-2px);
     }
 
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: #111;
+    }
+
+    /* GENERAL */
     section {
-      padding: 60px 8%;
+      padding: 90px 6%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
       text-align: center;
+      max-width: 760px;
+      margin: 0 auto 50px;
     }
 
-    section h2 {
-      color: #f5c542;
-      font-size: 36px;
-      margin-bottom: 35px;
+    .section-title small {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-weight: bold;
     }
 
+    .section-title h2 {
+      font-size: 43px;
+      text-transform: uppercase;
+      margin: 10px 0;
+    }
+
+    .section-title p {
+      color: var(--gray);
+    }
+
+    /* GAMING CARDS */
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 22px;
     }
 
     .card {
-      background: #181818;
-      padding: 30px;
-      border-radius: 10px;
-      border: 1px solid #333;
+      background: var(--dark);
+      border: 1px solid #292d2d;
+      padding: 35px;
+
+      transition: 0.3s;
     }
 
-    .card h3 {
-      color: #f5c542;
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: var(--gold);
+    }
+
+    .card-icon {
+      font-size: 40px;
       margin-bottom: 15px;
     }
 
+    .card h3 {
+      color: var(--gold-light);
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
     .card p {
-      color: #ccc;
-      line-height: 1.6;
+      color: #aaa;
     }
 
-    .itinerary {
-      max-width: 700px;
-      margin: auto;
-      text-align: left;
+    /* EXPERIENCE */
+    .dark-section {
+      background: #0d1010;
     }
 
-    .itinerary div {
-      background: #181818;
-      margin-bottom: 12px;
-      padding: 18px;
-      border-left: 4px solid #f5c542;
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
     }
 
-    .booking {
-      background: #151515;
+    .boat-image {
+      min-height: 450px;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.15),
+          rgba(0,0,0,.25)
+        ),
+        url("images/boat-interior.jpg")
+        center/cover;
+
+      border: 1px solid #333;
     }
 
-    footer {
+    .content small {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-weight: bold;
+    }
+
+    .content h2 {
+      font-size: 45px;
+      line-height: 1.05;
+      margin: 12px 0 20px;
+      text-transform: uppercase;
+    }
+
+    .content p {
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
+    /* GAMES */
+    .games {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .game {
+      min-height: 240px;
+
+      display: flex;
+      align-items: flex-end;
+
       padding: 25px;
-      text-align: center;
-      background: #080808;
-      color: #888;
+
+      border: 1px solid #303030;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(0,0,0,.9)
+        ),
+        url("images/game.jpg")
+        center/cover;
+
+      transition: .3s;
     }
 
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 38px;
-      }
+    .game:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
 
-      .cards {
-        grid-template-columns: 1fr;
+    .game span {
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    .game h3 {
+      font-size: 24px;
+    }
+
+    /* SCHEDULE */
+    .schedule {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .schedule-card {
+      background: var(--dark-2);
+      padding: 28px;
+      border-top: 3px solid var(--gold);
+    }
+
+    .schedule-card h3 {
+      color: var(--gold-light);
+      font-size: 24px;
+    }
+
+    .schedule-card p {
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+
+      background:
+        linear-gradient(
+          90deg,
+          #111,
+          #1d1a11,
+          #111
+        );
+    }
+
+    .cta h2 {
+      font-size: 48px;
+      text-transform: uppercase;
+    }
+
+    .cta p {
+      color: #bbb;
+      margin: 10px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #030404;
+      padding: 50px 6%;
+      color: #777;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-grid h3 {
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .footer-grid a {
+      display: block;
+      margin: 7px 0;
+    }
+
+    .footer-grid a:hover {
+      color: var(--gold);
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 30px auto 0;
+      padding-top: 20px;
+
+      border-top: 1px solid #222;
+
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 850px) {
+
+      .top-bar {
+        display: none;
       }
 
       nav {
         display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+
+        background: #080909;
+
+        flex-direction: column;
+        padding: 25px;
+        gap: 18px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .cards,
+      .games,
+      .schedule,
+      .split,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 72vh;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .section-title h2,
+      .content h2,
+      .cta h2 {
+        font-size: 34px;
+      }
+
+      .boat-image {
+        min-height: 300px;
       }
     }
   </style>
@@ -161,107 +485,453 @@
 
 <body>
 
-  <header>
-    <div class="logo">ROYAL CASINO BOAT</div>
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>CASINO CRUISE • OCEAN ENTERTAINMENT</span>
+    <span>Reservations: +1 000 000 0000</span>
+  </div>
 
-    <nav>
-      <a href="#trip">Trip</a>
-      <a href="#itinerary">Itinerary</a>
-      <a href="#booking">Booking</a>
-    </nav>
+
+  <!-- HEADER -->
+  <header>
+
+    <div class="navbar">
+
+      <a href="#" class="logo">
+        OCEAN <span>CROWN</span>
+      </a>
+
+      <button class="menu-btn" onclick="toggleMenu()">
+        MENU
+      </button>
+
+      <nav id="navigation">
+        <a href="#home">Home</a>
+        <a href="#gaming">Gaming</a>
+        <a href="#club">Players Club</a>
+        <a href="#games">Games</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+    </div>
+
   </header>
 
-  <section class="hero">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
     <div class="hero-content">
-      <h1>Casino Boat Trip</h1>
+
+      <div class="eyebrow">
+        WELCOME ABOARD
+      </div>
+
+      <h1>
+        Casino<br>
+        On The Water
+      </h1>
 
       <p>
-        Enjoy an unforgettable evening on the water with live entertainment,
-        dining, ocean views and a casino experience onboard.
+        Set sail for an unforgettable evening of ocean views,
+        entertainment, dining and casino-style gaming aboard
+        the Ocean Crown.
       </p>
 
-      <a href="#booking" class="btn">Reserve Your Trip</a>
-    </div>
-  </section>
+      <a href="#schedule" class="btn">
+        View Cruise Schedule
+      </a>
 
-  <section id="trip">
-    <h2>Trip Experience</h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>Luxury Boat</h3>
-        <p>
-          Relax aboard a stylish casino boat with comfortable seating,
-          entertainment areas and panoramic views.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Dining & Drinks</h3>
-        <p>
-          Enjoy dinner and refreshments while cruising along the coast.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Casino Entertainment</h3>
-        <p>
-          Experience casino-style entertainment onboard. Gambling is subject
-          to local laws, age restrictions and the operator's rules.
-        </p>
-      </div>
+      <a href="#contact" class="btn btn-outline">
+        Book Your Trip
+      </a>
 
     </div>
+
   </section>
 
-  <section id="itinerary">
-    <h2>Trip Itinerary</h2>
 
-    <div class="itinerary">
+  <!-- GAMING -->
+  <section id="gaming">
 
-      <div>
-        <strong>6:00 PM</strong> — Check-in at the marina
+    <div class="container">
+
+      <div class="section-title">
+
+        <small>STEP ABOARD</small>
+
+        <h2>
+          Casino Gaming
+        </h2>
+
+        <p>
+          Discover an exciting onboard entertainment experience
+          surrounded by ocean views.
+        </p>
+
       </div>
 
-      <div>
-        <strong>6:30 PM</strong> — Boarding begins
-      </div>
 
-      <div>
-        <strong>7:00 PM</strong> — Boat departs
-      </div>
+      <div class="cards">
 
-      <div>
-        <strong>7:30 PM</strong> — Dinner & entertainment
-      </div>
+        <div class="card">
 
-      <div>
-        <strong>9:00 PM</strong> — Casino entertainment
-      </div>
+          <div class="card-icon">
+            ♠
+          </div>
 
-      <div>
-        <strong>11:00 PM</strong> — Return to marina
+          <h3>
+            Players Club
+          </h3>
+
+          <p>
+            Join our players club and learn about available
+            benefits, offers and onboard rewards.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-icon">
+            🎰
+          </div>
+
+          <h3>
+            Slot Machines
+          </h3>
+
+          <p>
+            Explore a selection of electronic gaming machines
+            and discover your favorite style of play.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-icon">
+            ♦
+          </div>
+
+          <h3>
+            Table Games
+          </h3>
+
+          <p>
+            Enjoy classic table-game entertainment with live
+            dealers, subject to applicable local rules.
+          </p>
+
+        </div>
+
       </div>
 
     </div>
+
   </section>
 
-  <section class="booking" id="booking">
-    <h2>Reserve Your Trip</h2>
 
-    <p style="margin-bottom: 25px;">
-      Choose your preferred date and contact our booking team.
-    </p>
+  <!-- EXPERIENCE -->
+  <section class="dark-section" id="club">
 
-    <a href="mailto:booking@example.com" class="btn">
-      Contact Booking
-    </a>
+    <div class="container split">
+
+      <div class="boat-image"></div>
+
+
+      <div class="content">
+
+        <small>
+          THE EXPERIENCE
+        </small>
+
+        <h2>
+          More Than<br>
+          A Casino
+        </h2>
+
+        <p>
+          Take in the sea breeze, enjoy onboard dining and
+          entertainment, and make your cruise part of the night out.
+        </p>
+
+        <p>
+          From the moment you step aboard, the goal is to give
+          guests an evening they will remember.
+        </p>
+
+        <a href="#contact" class="btn">
+          Learn More
+        </a>
+
+      </div>
+
+    </div>
+
   </section>
 
+
+  <!-- GAMES -->
+  <section id="games">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <small>EXPLORE</small>
+
+        <h2>
+          Featured Games
+        </h2>
+
+        <p>
+          Replace these cards with your actual games and
+          photography.
+        </p>
+
+      </div>
+
+
+      <div class="games">
+
+        <div class="game">
+          <div>
+            <span>01</span>
+            <h3>Slots</h3>
+          </div>
+        </div>
+
+
+        <div class="game">
+          <div>
+            <span>02</span>
+            <h3>Blackjack</h3>
+          </div>
+        </div>
+
+
+        <div class="game">
+          <div>
+            <span>03</span>
+            <h3>Roulette</h3>
+          </div>
+        </div>
+
+
+        <div class="game">
+          <div>
+            <span>04</span>
+            <h3>Card Games</h3>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCHEDULE -->
+  <section class="dark-section" id="schedule">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <small>PLAN YOUR NIGHT</small>
+
+        <h2>
+          Cruise Schedule
+        </h2>
+
+        <p>
+          Example schedule — replace these times with your
+          actual departure information.
+        </p>
+
+      </div>
+
+
+      <div class="schedule">
+
+        <div class="schedule-card">
+
+          <h3>
+            Friday
+          </h3>
+
+          <p>
+            Boarding: 6:00 PM<br>
+            Departure: 7:00 PM<br>
+            Return: 11:00 PM
+          </p>
+
+        </div>
+
+
+        <div class="schedule-card">
+
+          <h3>
+            Saturday
+          </h3>
+
+          <p>
+            Boarding: 6:00 PM<br>
+            Departure: 7:00 PM<br>
+            Return: 11:00 PM
+          </p>
+
+        </div>
+
+
+        <div class="schedule-card">
+
+          <h3>
+            Sunday
+          </h3>
+
+          <p>
+            Boarding: 5:30 PM<br>
+            Departure: 6:30 PM<br>
+            Return: 10:30 PM
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+
+    <div class="container">
+
+      <h2>
+        Ready To Set Sail?
+      </h2>
+
+      <p>
+        Reserve your place aboard the Ocean Crown.
+      </p>
+
+      <a
+        href="mailto:booking@example.com"
+        class="btn"
+      >
+        Book Now
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
   <footer>
-    © 2026 Royal Casino Boat. All rights reserved.
+
+    <div class="footer-grid">
+
+      <div>
+
+        <h3>
+          OCEAN CROWN
+        </h3>
+
+        <p>
+          Casino cruise entertainment on the water.
+          Replace this text with your company's official
+          information.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Explore
+        </h3>
+
+        <a href="#gaming">Gaming</a>
+        <a href="#club">Players Club</a>
+        <a href="#games">Games</a>
+        <a href="#schedule">Schedule</a>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Contact
+        </h3>
+
+        <p>
+          +1 000 000 0000
+        </p>
+
+        <p>
+          booking@example.com
+        </p>
+
+        <p>
+          Your Marina Address
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+      © 2026 Ocean Crown Casino.
+      All rights reserved.
+
+      <br><br>
+
+      Gambling availability, age requirements and regulations
+      vary by location.
+
+    </div>
+
   </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    function toggleMenu() {
+
+      const nav =
+        document.getElementById("navigation");
+
+      nav.classList.toggle("active");
+
+    }
+
+    document.querySelectorAll("nav a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        document
+          .getElementById("navigation")
+          .classList.remove("active");
+
+      });
+
+    });
+
+  </script>
 
 </body>
 </html>
